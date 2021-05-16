@@ -9,6 +9,7 @@ public class UI : MonoBehaviour
 
     public void OnBuildButtonPress()
     {
-        Instantiate(_building, new Vector3(1000, 1000, 1000) , Quaternion.identity);
+        var building = Instantiate(_building, new Vector3(1000, 1000, 1000) , Quaternion.identity);
+        building.GetComponent<Building>()._built = false;
     }
 }

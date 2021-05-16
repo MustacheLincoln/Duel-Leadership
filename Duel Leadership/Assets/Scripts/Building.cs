@@ -6,7 +6,7 @@ public class Building : MonoBehaviour
 {
     Ray _ray;
     RaycastHit _hit;
-    private bool _built = false;
+    public bool _built = true;
     private Camera _mainCamera;
 
     private void Start()
@@ -29,9 +29,12 @@ public class Building : MonoBehaviour
                 Collider[] hitColliders = Physics.OverlapBox(gameObject.transform.position, transform.localScale / 2, Quaternion.identity, 3);
                 if (hitColliders.Length <= 1)
                 {
+                    //Make normal color here
                     if (Input.GetMouseButtonDown(0))
+                    {
                         _built = true;
-                    //Make Untransparent here
+                        //Make Untransparent here
+                    }
                 }
                 else
                     Destroy(gameObject); //Replace with turn Red
