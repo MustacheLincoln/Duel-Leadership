@@ -6,4 +6,10 @@ public class Employer : MonoBehaviour
 {
     public List<GameObject> workers;
     public int jobs;
+    public Building _building;
+
+    private void Awake()
+    {
+        _building = GetComponent<Building>();
+    }
 }

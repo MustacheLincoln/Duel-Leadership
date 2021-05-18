@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class Contractor : MonoBehaviour
 {
-    private Employer _HR;
+    private Employer _employer;
 
     private void Start()
     {
-        _HR = GetComponent<Employer>();
-        _HR.jobs = 4;
+        _employer = GetComponent<Employer>();
+        _employer.jobs = 4;
     }
 
     private void Update()
     {
-        foreach (GameObject worker in _HR.workers)
+        foreach (GameObject worker in _employer.workers)
         {
             break;
         }
