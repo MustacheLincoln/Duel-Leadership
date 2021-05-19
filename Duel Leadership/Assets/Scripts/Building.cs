@@ -6,43 +6,40 @@ public class Building : MonoBehaviour
 {
     Ray _ray;
     RaycastHit _hit;
-    public bool _built = false;
-    public bool _enabled = false;
+    public bool _built = true;
+    public bool _enabled = true;
     private Camera _mainCamera;
 
-    private void Start()
+    public void Build()
     {
-        _mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-    }
+        if (_mainCamera == null)
+            _mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        _built = false;
+        _enabled = false;
 
-    void Update()
-    {
-        if (_built == false)
+        //Make transparent here
+
+        //Mouse Position in World
+        _ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
+
+        if (Physics.Raycast(_ray, out _hit, Mathf.Infinity, LayerMask.GetMask("Buildable Ground")))
         {
-            //Make transparent here
-
-            //Mouse Position in World
-            _ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
-
-            if (Physics.Raycast(_ray, out _hit, Mathf.Infinity, LayerMask.GetMask("Buildable Ground")))
+            transform.position = new Vector3(_hit.point.x, _hit.point.y + transform.lossyScale.y / 2, _hit.point.z);
+            Collider[] hitColliders = Physics.OverlapBox(gameObject.transform.position, transform.localScale / 2, Quaternion.identity, LayerMask.GetMask("Buildings"));
+            if (hitColliders.Length <= 1)
             {
-                transform.position = new Vector3(_hit.point.x, _hit.point.y + transform.lossyScale.y / 2, _hit.point.z);
-                Collider[] hitColliders = Physics.OverlapBox(gameObject.transform.position, transform.localScale / 2, Quaternion.identity, LayerMask.GetMask("Buildings"));
-                if (hitColliders.Length <= 1)
+                //Make normal color here
+                if (Input.GetMouseButtonDown(0))
                 {
-                    //Make normal color here
-                    if (Input.GetMouseButtonDown(0))
-                    {
-                        _built = true;
-                        _enabled = true;
-                        //Make Untransparent here
-                    }
+                    _built = true;
+                    _enabled = true;
+                    //Make Untransparent here
                 }
-                else
-                    Destroy(gameObject); //Replace with turn Red
             }
             else
-                Destroy(gameObject); //Replace with 0 Alpha
+                return; //Replace with turn Red
         }
+        else
+            return; //Replace with 0 Alpha
     }
 }

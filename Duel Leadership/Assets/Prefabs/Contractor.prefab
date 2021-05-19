@@ -12,9 +12,7 @@ GameObject:
   - component: {fileID: 2723224242938455435}
   - component: {fileID: 2723224242938455444}
   - component: {fileID: 2723224242938455445}
-  - component: {fileID: 2723224242938455433}
   - component: {fileID: -4564249213767158437}
-  - component: {fileID: 952125986}
   m_Layer: 11
   m_Name: Contractor
   m_TagString: Untagged
@@ -30,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2723224242938455446}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8, y: 0, z: 7}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 4, y: 3, z: 3}
   m_Children: []
   m_Father: {fileID: 0}
@@ -98,20 +96,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2723224242938455433
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2723224242938455446}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fcb7cfd844605ea408714c945f84b875, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _built: 0
-  _enabled: 0
 --- !u!114 &-4564249213767158437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,18 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a209a615e4dfdf42bf1314201314ab7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &952125986
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2723224242938455446}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33a7fd4d32600f94ba89a5ae046a828e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  _built: 1
+  _enabled: 1
   workers: []
   jobs: 0
-  _building: {fileID: 0}

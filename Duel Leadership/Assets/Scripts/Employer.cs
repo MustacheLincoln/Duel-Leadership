@@ -2,14 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Employer : MonoBehaviour
+public class Employer : Building
 {
-    public List<GameObject> workers;
-    public int jobs;
-    public Building _building;
-
-    private void Awake()
-    {
-        _building = GetComponent<Building>();
-    }
+    public List<GameObject> _workers;
+    public int _jobs;
 }

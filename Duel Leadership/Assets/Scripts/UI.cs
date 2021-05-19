@@ -5,11 +5,19 @@ using UnityEngine;
 public class UI : MonoBehaviour
 {
     //Temp
-    public GameObject _building;
+    public GameObject _toBuild;
+    private GameObject _building;
+
+    private void Update()
+    {
+        if (_building)
+            if (_building.GetComponent<Building>()._built == false)
+                _building.GetComponent<Building>().Build();
+    }
 
     public void OnBuildButtonPress()
     {
-        var building = Instantiate(_building, new Vector3(1000, 1000, 1000) , Quaternion.identity);
-        building.GetComponent<Building>()._built = false;
+        _building = Instantiate(_toBuild, new Vector3(1000, 1000, 1000) , Quaternion.identity);
+        _building.GetComponent<Building>().Build();
     }
 }
