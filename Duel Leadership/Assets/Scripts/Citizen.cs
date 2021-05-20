@@ -9,6 +9,7 @@ public class Citizen : MonoBehaviour
     public Employer _employer;
     public Home _home;
     public Vector3 _destination;
+    public GameObject _shanty;
 
     void Update()
     {
@@ -55,9 +56,11 @@ public class Citizen : MonoBehaviour
                 {
                     home._residents.Add(gameObject);
                     _home = home;
+                    return;
                 }
             }
         }
+        Instantiate(_shanty, transform.position, Quaternion.identity);
     }
 
     void Walk()
