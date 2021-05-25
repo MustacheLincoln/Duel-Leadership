@@ -15,20 +15,29 @@ public class Citizen : MonoBehaviour
     {
         StateMachine();
         Walk();
-        if (_employer == null)
-            FindJob();
-        if (_home == null)
-            FindHome();
     }
 
     void StateMachine()
     {
-        if (_employer)
-            if (_energy >= 100)
-                _destination = _employer.transform.position;
-        if (_home)
-            if (_energy <= 0)
-                _destination = _home.transform.position;
+        if (_energy >= 100)
+        {
+            if (_employer == null)
+            {
+                FindJob();
+                return;
+            }
+            _destination = _employer.transform.position;
+        }
+               
+        if (_energy <= 0)
+        {
+            if (_home == null)
+            {
+                FindHome();
+                return;
+            }
+            _destination = _home.transform.position;
+        }
     }
 
     void FindJob()
@@ -60,12 +69,12 @@ public class Citizen : MonoBehaviour
                 }
             }
         }
-        Instantiate(_shanty, transform.position, Quaternion.identity);
+        Instantiate(_shanty, new Vector3(_employer.transform.position.x + Random.Range(-5,5), _employer.transform.position.y - transform.lossyScale.y / 2, _employer.transform.position.z + Random.Range(-5, 5)), Quaternion.identity);
     }
 
     void Walk()
     {
-        if (Vector3.Distance(transform.position, _destination) >= 1)
+        if (Vector3.Distance(transform.position, _destination) >= .1)
         {
             var direction = (transform.position - _destination).normalized;
             transform.position -= direction * Time.deltaTime * _speed;
@@ -83,12 +92,12 @@ public class Citizen : MonoBehaviour
 
     void AtWork()
     {
-        _energy -= 1 * Time.deltaTime;
+        _energy -= 10 * Time.deltaTime;
     }
 
     void AtHome()
     {
-        _energy += 1 * Time.deltaTime;
+        _energy += 10 * Time.deltaTime;
     }
 
     void Die()
